@@ -484,20 +484,42 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// The following code for sliding background pizzas was pulled from Ilya's demo found at:
-// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
+// This function watches the scroll position and calculates the movement values for background pizzas.
+var currentScrollY = [];
+
+function onScroll() {
+    for (i = 0; i <= 32; i++) {
+        var calc = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+        currentScrollY[i] = calc; 
+  }
+  return currentScrollY;
+  i = 0;
+}
+
+
+window.addEventListener('scroll', onScroll);
+
+// This function will handle the inital setup of background pizzas.
+ 
+function buildBackgroundPizzas(){
+  var items = document.querySelectorAll('.mover');
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  }
+}
+
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover'); 
+  var items = document.querySelectorAll('.mover');
 
   for (var i = 0; i < items.length; i++) {
-    var phase = (Math.random() * 2) - 1; 
-    // var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var phase = currentScrollY;
+    items[i].style.left = items[i].basicLeft + 100 * phase[i] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -509,14 +531,6 @@ function updatePositions() {
     logAverageFrame(timesToUpdatePosition);
   }
 }
-
-// Function to get random number between -1 and 1 to slide background pizzas.
-
-// function getRandInt () {
-//   var trial = Math.sin(Math.random() ? -1 : 1);
-//   console.log(trial);
-// };
-
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
@@ -535,5 +549,32 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
-  updatePositions();
+  buildBackgroundPizzas();
 });
+
+
+
+// var getScrollY = 0;
+
+// function onScroll() {
+//   getScrollY = Math.sin(Math.random()) - 1;
+//   // console.log(getScrollY);
+// }
+
+
+// function updatePositions(){
+
+//   var currentScrollY = getScrollY;
+//   if (currentScrollY)
+//   console.log(currentScrollY);
+
+//   var items = document.querySelectorAll('.mover');
+
+//   for (var i = 0; i < items.length; i++) {
+
+//     items[i].style.left = items[i].basicLeft + 100 * currentScrollY + 'px';
+//   } 
+//   requestAnimationFrame(updatePositions);
+// }
+
+// window.addEventListener('scroll', onScroll);
