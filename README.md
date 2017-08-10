@@ -6,7 +6,7 @@ This is the final product of a project intended to help myself fully understand 
 
 Simple. The project is being hosted on GitHub Pages. Just follow this [link](https://kwdevs.github.io/frontend-nanodegree-mobile-portfolio/) to view the site's homepage. Or this [link](https://kwdevs.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html) to view the pizza section of this site.
 
-#### Optimizations Performed on the Homepage(index.html @ root directory).
+### Optimizations Performed on the Homepage(index.html @ root directory).
 
 * Google Analytics now uses an async tag, which previously was render blocking.
 * Google Analytics is now served over https, preventing mixed content errors.
@@ -15,7 +15,7 @@ Simple. The project is being hosted on GitHub Pages. Just follow this [link](htt
 * WebFontLoader was implented to help fonts load better.
 * style.css was inlined for the homepage.  The css was compressed.
 
-#### Optimizations Performed on the Pizza Page (main.js).
+### Optimizations Performed on the Pizza Page (main.js).
 
 * Changed .container background to green.
 * Fixed a Forced Synchronous Layout (FSL) caused by function changePizzaSizes. A for loop was repeatedly accessing the DOM unnecessarily. Now, DOM elements are collected outside the for loop, & styles are applied within the for loop.
