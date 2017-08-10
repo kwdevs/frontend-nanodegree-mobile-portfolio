@@ -492,8 +492,8 @@ function onScroll() {
         var calc = Math.sin((document.body.scrollTop / 1250) + (i % 5));
         currentScrollY[i] = calc; 
   }
-  return currentScrollY;
   i = 0;
+  return currentScrollY;
 }
 
 
