@@ -551,30 +551,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   buildBackgroundPizzas();
 });
-
-
-
-// var getScrollY = 0;
-
-// function onScroll() {
-//   getScrollY = Math.sin(Math.random()) - 1;
-//   // console.log(getScrollY);
-// }
-
-
-// function updatePositions(){
-
-//   var currentScrollY = getScrollY;
-//   if (currentScrollY)
-//   console.log(currentScrollY);
-
-//   var items = document.querySelectorAll('.mover');
-
-//   for (var i = 0; i < items.length; i++) {
-
-//     items[i].style.left = items[i].basicLeft + 100 * currentScrollY + 'px';
-//   } 
-//   requestAnimationFrame(updatePositions);
-// }
-
-// window.addEventListener('scroll', onScroll);
