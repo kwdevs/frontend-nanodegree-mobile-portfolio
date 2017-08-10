@@ -1,4 +1,4 @@
-## What is this?
+## What is this repo about?
 
 This is the final product of a project intended to help myself fully understand the Critical Rendering Path (CRP) by implenting various fixes to improve the performance of the site.
 
